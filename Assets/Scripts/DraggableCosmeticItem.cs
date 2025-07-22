@@ -5,18 +5,19 @@ public class DraggableCosmeticItem : MonoBehaviour
 {
     [Header("Item Settings")]
     public CosmeticType cosmeticType;
-    public Sprite appliedSprite;
+    public Sprite appliedSprite; // Для губки может быть null
 
     [Header("References")]
     public GirlMakeupController girlMakeupController;
-    public Collider2D applyZoneCollider;
+    public Collider2D applyZoneCollider; // Зона нанесения (например, Collider2D для LipsZone, PimpleApplyZone, или новой зоны для губки)
 
     private Vector3 originalPosition;
     private bool isDragging = false;
     private Collider2D itemCollider;
     private SpriteRenderer itemSpriteRenderer;
-    private int originalSortingOrder; 
-    public enum CosmeticType { Lipstick, Eyeshadow, Blush, Cream }
+    private int originalSortingOrder;
+
+    public enum CosmeticType { Lipstick, Eyeshadow, Blush, Cream, Sponge }
 
     void Start()
     {
@@ -73,8 +74,14 @@ public class DraggableCosmeticItem : MonoBehaviour
                 case CosmeticType.Eyeshadow:
                     girlMakeupController.ApplyEyeshadow(appliedSprite);
                     break;
+                case CosmeticType.Blush:
+                    girlMakeupController.ApplyBlush(appliedSprite);
+                    break;
                 case CosmeticType.Cream:
                     girlMakeupController.RemovePimples();
+                    break;
+                case CosmeticType.Sponge:
+                    girlMakeupController.ResetMakeup();
                     break;
             }
             StartCoroutine(ReturnToOriginalPosition());

@@ -3,11 +3,11 @@ using UnityEngine;
 public class GirlMakeupController : MonoBehaviour
 {
     [Header("Makeup Layers")]
-    public SpriteRenderer faceBaseRenderer; 
+    public SpriteRenderer faceBaseRenderer;
     public SpriteRenderer lipsLayerRenderer;
-    public SpriteRenderer eyesLayerRenderer; 
+    public SpriteRenderer eyesLayerRenderer;
     public SpriteRenderer cheeksLayerRenderer;
-    public SpriteRenderer pimplesLayerRenderer; 
+    public SpriteRenderer pimplesLayerRenderer;
 
     [SerializeField] private Sprite initialFaceSprite;
 
@@ -37,6 +37,22 @@ public class GirlMakeupController : MonoBehaviour
         if (eyesLayerRenderer != null)
         {
             eyesLayerRenderer.sprite = eyeSpriteToApply;
+        }
+    }
+
+    public void ApplyBlush(Sprite blushSpriteToApply)
+    {
+        if (cheeksLayerRenderer != null)
+        {
+            cheeksLayerRenderer.sprite = blushSpriteToApply;
+        }
+    }
+
+    public void ApplyEyelashes(Sprite eyelashSpriteToApply)
+    {
+        if (eyesLayerRenderer != null)
+        {
+            eyesLayerRenderer.sprite = eyelashSpriteToApply;
         }
     }
 
